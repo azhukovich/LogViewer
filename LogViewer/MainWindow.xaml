@@ -1,0 +1,64 @@
+﻿<Window x:Class="LogViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogViewer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768.0" Width="1024.0">
+    <Grid Margin="0,0,0,-31">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="73*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Button x:Name="button" Content="Happy-Happy" HorizontalAlignment="Left" Margin="75,324,0,0" VerticalAlignment="Top" Width="93" Click="button_Click" RenderTransformOrigin="0.592,3.812" Grid.Column="1" Height="20"/>
+
+        <TabControl Margin="0,-25,0,25" Grid.ColumnSpan="3">
+            <TabItem Header="Settings" Margin="108,22,-161,-25" HorizontalAlignment="Left" Width="100" >
+                <Grid Margin="0,1,0,-1">
+                    <Button Height="24" Margin="25,38,0,0" x:Name="loadSettingsButton" VerticalAlignment="Top"   
+                HorizontalAlignment="Left" Width="121" Click="loadSettingsClick" Content="Load settings"/>
+                    <Button Height="24" Margin="193,38,0,0" x:Name="saveSettingsButton" VerticalAlignment="Top"   
+                HorizontalAlignment="Left" Width="122" Click="saveSettingsClick" Content="Save settings"/>
+                    <Button Height="24" Margin="193,254,0,0" x:Name="button1" VerticalAlignment="Top"   
+                HorizontalAlignment="Left" Width="117" Click="button1_Click" Content="Apply changes"/>
+                    <Label  Content="Server URL:"  Margin="25,80" VerticalAlignment="Top" Background="Beige" Padding="7" Height="32" Width="290" HorizontalAlignment="Left"/>
+                    <TextBox Name="serverURL" AcceptsReturn="True" TextWrapping="Wrap" Margin="110,85" Text="your.server.com" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="200"/>
+                    <Label  Content="User:"  Margin="25,120" Height="32" Width="290" VerticalAlignment="Top" Background="Beige" Padding="7"  HorizontalAlignment="Left"/>
+                    <TextBox Name="userName" Margin="130,125" Height="24" Width="180" AcceptsReturn="True" TextWrapping="Wrap"  Text="user" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                    <Label  Content="User Password:"  Margin="25,160" Height="32" Width="290" VerticalAlignment="Top" Background="Beige" Padding="7"  HorizontalAlignment="Left"/>
+                    <TextBox Name="userPassword" Margin="130,165" Height="24" Width="180" AcceptsReturn="True" TextWrapping="Wrap"  Text="password" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                    <Label  Content="Log Path:"  Margin="25,200" Height="32" Width="290" VerticalAlignment="Top" Background="Beige" Padding="7"  HorizontalAlignment="Left"/>
+                    <TextBox Name="logPath" Margin="130,205" Height="24" Width="180" AcceptsReturn="True" TextWrapping="Wrap"  Text="/path/to/logs/" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                    <Button Height="24" Margin="25,254,0,0" x:Name="checkButton" VerticalAlignment="Top"   
+                HorizontalAlignment="Left" Width="121" Click="testConn_Click" Content="Test Connection"/>
+                    <Label  Content="Files Path:"  Margin="25,300,0,0" Height="32" Width="439" VerticalAlignment="Top" Background="Beige" Padding="7"  HorizontalAlignment="Left"/>
+                    <TextBox Name="folderPath" Margin="130,305,0,0" Height="24" Width="316" AcceptsReturn="True" TextWrapping="Wrap"  Text="." VerticalAlignment="Top" HorizontalAlignment="Left" />
+                    <Label  Content="Number of days to parse logs:"  Margin="25,340,0,0" Height="32" Width="440" VerticalAlignment="Top" Background="Beige" Padding="7"  HorizontalAlignment="Left"/>
+                    <TextBox Name="logDays" Margin="400,345,0,0" Height="24" Width="46" AcceptsReturn="True" TextWrapping="Wrap"  Text="6" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Check Logs" Margin="-74,23,0,-25" HorizontalAlignment="Left" Width="81" >
+                <Grid>
+                    <Label  Content="Filter by type"  Margin="5,80" VerticalAlignment="Top" Background="Beige" Padding="5" Height="32"/>
+                    <TextBox Name="filterType" AcceptsReturn="True" TextWrapping="Wrap" Margin="80,85,860,78" Text="ERROR" VerticalAlignment="Top" Height="20"/>
+                    <Label  Content="Filter by error text"  Margin="165,80" VerticalAlignment="Top" Background="Beige" Padding="5" Height="32"/>
+                    <TextBox Name="filterError" AcceptsReturn="True" TextWrapping="Wrap" Margin="280,85,560,78" Text="" VerticalAlignment="Top" Height="20"/>
+                    <Button x:Name="applyFilter" Margin="580,85,260,78"  VerticalAlignment="Top" Height="20" Content="Apply filter to data." Click="applyFilter_Click"/>
+                    <DataGrid Name="gridList" Margin="10,115" ItemsSource="{Binding Customers}" VerticalAlignment="Top" Height="300"  SelectionChanged="updateError"/>
+                    <TextBox Name="errorBox" AcceptsReturn="True" TextWrapping="Wrap" Margin="10,420,10,75" Text="Status:" VerticalAlignment="Stretch"/>
+                    <TextBox Name="statusBox" AcceptsReturn="True" TextWrapping="Wrap" Margin="10,0,10,10" Text="Status:" VerticalAlignment="Bottom" Height="60"/>
+                    <Button Height="23" Margin="13,40,0,0" x:Name="button2" VerticalAlignment="Top"   
+                HorizontalAlignment="Left" Width="119" Click="button2_Click" Content="Get files from server"/>
+                    <Button Height="23" Margin="174,40,0,0" x:Name="buttonParse" VerticalAlignment="Top"   
+                HorizontalAlignment="Left" Width="119" Click="buttonParse_Click" Content="Parse data"/>
+                </Grid>
+            </TabItem>
+            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+        </TabControl>
+    </Grid>
+</Window>
